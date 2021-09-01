@@ -37,4 +37,3 @@ window.onpopstate = () => {
 };
 
 rootDiv.appendChild(components());
-//
