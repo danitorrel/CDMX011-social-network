@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
+import { auth } from '../lib/lib/secret.js';
 
 export const Home = () => {
   const Homediv = document.createElement('div');
@@ -25,7 +26,7 @@ export const Home = () => {
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth()
+    auth
       .signInWithPopup(provider)
       .then(() => {
         console.log('enter with google');
