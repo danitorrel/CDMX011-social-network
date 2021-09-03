@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
-import { Home } from './lib/components/Home.js';
+import { Home } from './components/Home.js';
 // eslint-disable-next-line import/no-cycle
-import { Register } from './lib/components/Register.js';
+import { Register } from './components/Register.js';
 // eslint-disable-next-line import/no-cycle
-import { Login } from './lib/components/Login.js';
+import { Login } from './components/Login.js';
 
 const rootDiv = document.getElementById('root');
 
