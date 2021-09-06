@@ -5,12 +5,15 @@ import { Register } from './components/Register.js';
 // eslint-disable-next-line import/no-cycle
 import { Login } from './components/Login.js';
 
+import { Wall } from './components/Wall.js';
+
 const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': Home,
   '/register': Register,
   '/login': Login,
+  '/wall': Wall,
 };
 
 export const onNavigate = (pathname) => {
