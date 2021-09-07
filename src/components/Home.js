@@ -8,12 +8,11 @@ export const Home = () => {
   const logo = document.createElement('img');
   const labelWelcome = document.createElement('label');
   const passport = document.createElement('img');
-  const divWhite = document.createElement('div');
+//  const divWhite = document.createElement('div');
   const buttonRegister = document.createElement('button');
   const buttonLogin = document.createElement('button');
   const labelOr = document.createElement('label');
   const buttonGoogle = document.createElement('button');
-  const pathway = document.createElement('img');
 
   airplane.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/avion.png?alt=media&token=1719248f-44c5-4d22-b32b-664e31992608');
   airplane.id = 'airplane';
@@ -23,7 +22,7 @@ export const Home = () => {
   labelWelcome.id = 'welcome';
   passport.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/passport.png?alt=media&token=bd477459-fe1f-4c31-9b2b-33cd4692d145');
   passport.id = 'passport';
-  divWhite.id = 'divWhite';
+//  divWhite.id = 'divWhite';
   buttonRegister.textContent = 'Regístrate';
   buttonRegister.id = 'btnRegister';
   buttonLogin.textContent = 'Iniciar Sesión';
@@ -32,8 +31,6 @@ export const Home = () => {
   labelOr.id = 'labelO';
   buttonGoogle.textContent = 'Continuar con Google';
   buttonGoogle.id = 'btnGoogle';
-  pathway.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/rout.png?alt=media&token=fcfd37ef-f6ce-47a0-9527-eb45f2d066c7');
-  pathway.id = 'pathway';
 
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
@@ -55,11 +52,11 @@ export const Home = () => {
   Homediv.appendChild(logo);
   Homediv.appendChild(labelWelcome);
   Homediv.appendChild(passport);
+//	Homediv.appendChild(divWhite);
   Homediv.appendChild(buttonRegister);
   Homediv.appendChild(buttonLogin);
   Homediv.appendChild(labelOr);
   Homediv.appendChild(buttonGoogle);
-  Homediv.appendChild(pathway);
 
   return Homediv;
 };
