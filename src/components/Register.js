@@ -13,9 +13,9 @@ export const Register = () => {
   const labelSubtitle = document.createElement('label');
   labelSubtitle.textContent = 'Inicia la aventura';
   labelSubtitle.id = 'labelSub';
-  const formRegister = document.createElement('form');
+/*   const formRegister = document.createElement('form');
   formRegister.setAttribute('type', 'submit');
-  formRegister.id = 'formRegister';
+  formRegister.id = 'formRegister'; */
   const inputUsername = document.createElement('input');
   inputUsername.setAttribute('type', 'text');
   inputUsername.placeholder = 'Nombre de usuario';
@@ -57,8 +57,7 @@ export const Register = () => {
       });
   });
 
-  const btnRegister = Homediv.querySelector('#formRegister');
-  btnRegister.addEventListener('submit', (e) => {
+  buttonRegister.addEventListener('click', (e) => {
     const emailRegister = Homediv.querySelector('#inputEmail').value;
     const passwordRegister = Homediv.querySelector('#inputPassword').value;
     e.preventDefault();
@@ -66,8 +65,8 @@ export const Register = () => {
     console.log(registerUser);
     onNavigate('/login');
   });
-
-  Homediv.appendChild(formRegister);
+/*
+  Homediv.appendChild(formRegister); */
   Homediv.appendChild(buttonHome);
   Homediv.appendChild(labelRegister);
   Homediv.appendChild(labelSubtitle);
