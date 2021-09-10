@@ -4,6 +4,7 @@ import { onNavigate } from '../main.js';
 import { authGoogle } from '../lib/lib/firebase.js';
 
 export const Home = () => {
+  document.body.style.backgroundColor = '#F2B705';
   const Homediv = document.createElement('div');
 
   const airplane = document.createElement('img');
@@ -12,6 +13,7 @@ export const Home = () => {
 
   const logo = document.createElement('img');
   logo.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/logo-pata-de-perro.png?alt=media&token=338afd9b-ad90-453b-9007-05416b3dda22');
+  logo.alt = 'logo pata de perro';
   logo.id = 'logo';
 
   const labelWelcome = document.createElement('label');
@@ -40,18 +42,12 @@ export const Home = () => {
 
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
-  buttonGoogle.addEventListener('click', (e) => {
+  buttonGoogle.addEventListener('click', () => {
     authGoogle(onNavigate);
   });
 
-  Homediv.appendChild(airplane);
-  Homediv.appendChild(logo);
-  Homediv.appendChild(labelWelcome);
-  Homediv.appendChild(passport);
-  Homediv.appendChild(buttonRegister);
-  Homediv.appendChild(buttonLogin);
-  Homediv.appendChild(labelOr);
-  Homediv.appendChild(buttonGoogle);
+  Homediv.append(airplane, logo, labelWelcome, passport,
+    buttonRegister, buttonLogin, labelOr, buttonGoogle);
 
   return Homediv;
 };

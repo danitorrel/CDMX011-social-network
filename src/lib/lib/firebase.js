@@ -23,6 +23,6 @@ export const authGoogle = () => {
       onNavigate('/wall');
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.message);
     });
 };

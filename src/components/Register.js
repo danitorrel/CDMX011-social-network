@@ -6,6 +6,7 @@ import { registerUser } from '../lib/lib/firebase.js';
 import { authGoogle } from '../lib/lib/firebase.js';
 
 export const Register = () => {
+  document.body.style.backgroundColor = '#ffffff';
   const Homediv = document.createElement('div');
 
   const buttonHome = document.createElement('button');
@@ -76,8 +77,10 @@ export const Register = () => {
 
   eyeOff.addEventListener('click', () => {
     const passwordValue = Homediv.querySelector('#inputPassword');
+    const passwordConfirmValue = Homediv.querySelector('#inputConfirm');
     if (passwordValue.type === 'password') {
       passwordValue.type = 'text';
+      passwordConfirmValue.type = 'text';
       eyeOff.style.display = 'none';
       eyeOn.style.display = 'block';
     }
@@ -85,8 +88,10 @@ export const Register = () => {
 
   eyeOn.addEventListener('click', () => {
     const passwordValue = Homediv.querySelector('#inputPassword');
+    const passwordConfirmValue = Homediv.querySelector('#inputConfirm');
     if (passwordValue.type === 'text') {
       passwordValue.type = 'password';
+      passwordConfirmValue.type = 'password';
       eyeOff.style.display = 'block';
       eyeOn.style.display = 'none';
     }
@@ -102,28 +107,21 @@ export const Register = () => {
     const passwordConfirm = Homediv.querySelector('#inputConfirm').value;
     e.preventDefault();
     console.log(registerUser);
+
     if (passwordRegister !== passwordConfirm) {
       labelPassword.style.display = 'block';
-    } else if (inputEmail.type !== 'email') {
-      labelEmail.style.display = 'block';
     } else {
       registerUser(emailRegister, passwordRegister);
       onNavigate('/login');
     }
+
+		if(inputEmail.type !== 'email') {
+
+		}
   });
 
-  Homediv.appendChild(buttonHome);
-  Homediv.appendChild(labelRegister);
-  Homediv.appendChild(labelSubtitle);
-  Homediv.appendChild(inputUsername);
-  Homediv.appendChild(inputEmail);
-  Homediv.appendChild(inputPassword);
-  Homediv.appendChild(labelPassword);
-  Homediv.appendChild(eyeOn);
-  Homediv.appendChild(eyeOff);
-  Homediv.appendChild(inputPasswordConfirm);
-  Homediv.appendChild(buttonRegister);
-  Homediv.appendChild(buttonGoogleRegister);
-
+  Homediv.append(buttonHome, labelRegister, labelSubtitle, inputUsername,
+    inputEmail, labelEmail, inputPassword, labelPassword, eyeOn, eyeOff,
+    inputPasswordConfirm, buttonRegister, buttonGoogleRegister);
   return Homediv;
 };
