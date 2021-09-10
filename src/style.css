@@ -81,6 +81,18 @@ button {
 	font-weight: 500;
 }
 
-#divWhite {
-	background-color: white;
+#eyeOff {
+	position: absolute;
+	width: 1rem;
+	right: 40px;
+	top: 148px;
+	opacity: 0.7;
+}
+
+#eyeOn {
+	position: absolute;
+	width: 1rem;
+	right: 40px;
+	top: 148px;
+	opacity: 0.7;
 }
