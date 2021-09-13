@@ -20,6 +20,9 @@ export const Register = () => {
   labelSubtitle.textContent = 'Inicia la aventura';
   labelSubtitle.id = 'labelSub';
 
+  const divFormRegister = document.createElement('div');
+  divFormRegister.classList.add('divFormRegister');
+
   const inputUsername = document.createElement('input');
   inputUsername.setAttribute('type', 'text');
   inputUsername.placeholder = 'Nombre de usuario';
@@ -106,22 +109,24 @@ export const Register = () => {
     const passwordRegister = Homediv.querySelector('#inputPassword').value;
     const passwordConfirm = Homediv.querySelector('#inputConfirm').value;
     e.preventDefault();
-    console.log(registerUser);
-
-    if (passwordRegister !== passwordConfirm) {
-      labelPassword.style.display = 'block';
-    } else {
-      registerUser(emailRegister, passwordRegister);
-      onNavigate('/login');
+    if (passwordRegister === passwordConfirm) {
+      registerUser(emailRegister, passwordRegister)
+        .then((result) => {
+          onNavigate('/login');
+          console.log(result);
+          console.log(firebase.auth().currentUser);
+        })
+        .catch((error) => {
+          console.log(error.message);
+          labelPassword.style.display = 'block';
+        });
     }
-
-		if(inputEmail.type !== 'email') {
-
-		}
   });
 
-  Homediv.append(buttonHome, labelRegister, labelSubtitle, inputUsername,
-    inputEmail, labelEmail, inputPassword, labelPassword, eyeOn, eyeOff,
+  Homediv.append(buttonHome, labelRegister, labelSubtitle);
+  Homediv.appendChild(divFormRegister);
+  divFormRegister.append(inputUsername, inputEmail, labelEmail,
+    inputPassword, labelPassword, eyeOn, eyeOff,
     inputPasswordConfirm, buttonRegister, buttonGoogleRegister);
   return Homediv;
 };

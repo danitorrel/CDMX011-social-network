@@ -5,9 +5,9 @@ import { onNavigate } from '../../main.js';
 export const registerUser = (email, password) => {
   auth
     .createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      console.log(userCredential.user);
-    })
+    .then((userCredential) => userCredential.user.updateProfile({
+      displayName: document.getElementsById('inputUsername').value,
+    }))
     .catch((error) => {
       console.log('error', error.message);
     // ..

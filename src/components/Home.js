@@ -24,6 +24,9 @@ export const Home = () => {
   passport.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/passport.png?alt=media&token=bd477459-fe1f-4c31-9b2b-33cd4692d145');
   passport.id = 'passport';
 
+  const divButtons = document.createElement('div');
+  divButtons.classList.add('divButtons');
+
   const buttonRegister = document.createElement('button');
   buttonRegister.textContent = 'Regístrate';
   buttonRegister.id = 'btnRegister';
@@ -46,8 +49,9 @@ export const Home = () => {
     authGoogle(onNavigate);
   });
 
-  Homediv.append(airplane, logo, labelWelcome, passport,
-    buttonRegister, buttonLogin, labelOr, buttonGoogle);
+  Homediv.append(airplane, logo, labelWelcome, passport);
+  Homediv.appendChild(divButtons);
+  divButtons.append(buttonRegister, buttonLogin, labelOr, buttonGoogle);
 
   return Homediv;
 };
