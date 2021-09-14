@@ -113,8 +113,6 @@ button {
 	box-sizing: border-box;
 	box-shadow: 0 0 15px #e4e4e4;
 	padding: 37px;
-	display: flex;
-	flex-direction: column;
 
 }
 

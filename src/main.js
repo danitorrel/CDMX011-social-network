@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { Home } from './components/Home.js';
 // eslint-disable-next-line import/no-cycle
-import { Signin } from './components/Signin.js';
+import { Register } from './components/Register.js';
 // eslint-disable-next-line import/no-cycle
 import { Login } from './components/Login.js';
 
@@ -11,7 +11,7 @@ const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': Home,
-  '/register': Signin,
+  '/register': Register,
   '/login': Login,
   '/wall': Wall,
 };

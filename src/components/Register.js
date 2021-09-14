@@ -1,5 +1,6 @@
 import { onNavigate } from '../main.js';
 import { authGoogle, registerUser } from '../lib/lib/firebase.js';
+import { ErrorValidate } from '../utils/ErrorValidate.js';
 
 export function Register() {
   document.body.style.backgroundColor = '#ffffff';
@@ -59,6 +60,8 @@ export function Register() {
   buttonRegister.id = 'buttonRegister';
   buttonRegister.textContent = 'Regístrate';
 
+  const labelErr = document.createElement('label');
+
   const buttonGoogleRegister = document.createElement('button');
   buttonGoogleRegister.textContent = 'Registrarse con Google';
   buttonGoogleRegister.id = 'btnGoogle';
@@ -95,25 +98,20 @@ export function Register() {
     e.preventDefault();
     const emailRegister = Homediv.querySelector('#inputEmail').value;
     const passwordRegister = Homediv.querySelector('#inputPassword').value;
-    const passwordConfirm = Homediv.querySelector('#inputConfirm').value;
-
-    if (passwordRegister !== passwordConfirm) {
-      labelPassword.style.display = 'block';
-    } else {
-      registerUser(emailRegister, passwordRegister);
-    }
-
-    if (emailRegister.type === 'email') {
-      registerUser(emailRegister, passwordRegister);
-    } else {
-      labelEmail.style.display = 'block';
-    }
+    registerUser(emailRegister, passwordRegister)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('llegamos', user);
+      })
+      .catch((error) => {
+        labelErr.innerText = ErrorValidate(error.code);
+      });
   });
 
   Homediv.append(buttonHome, labelRegister, labelSubtitle);
   Homediv.appendChild(divFormRegister);
-  divFormRegister.append(formRegister, buttonGoogleRegister)(inputUsername, inputEmail,
-    inputPassword, eyeOn, eyeOff, inputPasswordConfirm, buttonRegister);
+  divFormRegister.append(inputUsername, inputEmail,
+    inputPassword, eyeOn, eyeOff, inputPasswordConfirm, buttonRegister, buttonGoogleRegister);
 
   return Homediv;
 }

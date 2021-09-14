@@ -13,16 +13,11 @@ export const Signin = () => {
   buttonSend.addEventListener('click', () => {
     registerUser(inputEmail.value, inputPass.value)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         console.log('llegamos', user);
-        // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        alerta.innerText = ErrorValidate(errorCode);
-
-        // ..
+        alerta.innerText = ErrorValidate(error.code);
       });
   });
 
