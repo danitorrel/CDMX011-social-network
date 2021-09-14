@@ -1,11 +1,10 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 // eslint-disable-next-line import/no-cycle
-import { registerUser } from '../lib/lib/firebase.js';
-// eslint-disable-next-line import/no-cycle
 import { authGoogle } from '../lib/lib/firebase.js';
+import { auth } from '../lib/lib/secret.js';
 
-export const Register = () => {
+export function Register() {
   document.body.style.backgroundColor = '#ffffff';
   const Homediv = document.createElement('div');
 
@@ -47,7 +46,7 @@ export const Register = () => {
   inputPassword.required = true;
 
   const labelPassword = document.createElement('label');
-  labelPassword.textContent = 'Las contraseñas no coincide';
+  labelPassword.textContent = 'Las contraseñas no coinciden';
   labelPassword.id = 'labelPass';
   labelPassword.style.display = 'none';
 
@@ -105,22 +104,24 @@ export const Register = () => {
   });
 
   buttonRegister.addEventListener('click', (e) => {
+    e.preventDefault();
     const emailRegister = Homediv.querySelector('#inputEmail').value;
     const passwordRegister = Homediv.querySelector('#inputPassword').value;
     const passwordConfirm = Homediv.querySelector('#inputConfirm').value;
-    e.preventDefault();
     if (passwordRegister === passwordConfirm) {
-      registerUser(emailRegister, passwordRegister)
+      auth
+        .createUserWithEmailAndPassword(emailRegister, passwordRegister)
         .then((result) => {
-          onNavigate('/login');
           console.log(result);
-          console.log(firebase.auth().currentUser);
+          alert('Registro exitoso');
+          onNavigate('/login');
         })
         .catch((error) => {
-          console.log(error.message);
+          console.log(error);
           labelPassword.style.display = 'block';
         });
     }
+		if ()
   });
 
   Homediv.append(buttonHome, labelRegister, labelSubtitle);
@@ -128,5 +129,6 @@ export const Register = () => {
   divFormRegister.append(inputUsername, inputEmail, labelEmail,
     inputPassword, labelPassword, eyeOn, eyeOff,
     inputPasswordConfirm, buttonRegister, buttonGoogleRegister);
+
   return Homediv;
-};
+}
