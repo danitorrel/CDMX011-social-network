@@ -1,12 +1,10 @@
-// eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
-// eslint-disable-next-line import/no-cycle
-import { authGoogle } from '../lib/lib/firebase.js';
-import { auth } from '../lib/lib/secret.js';
+import { authGoogle, registerUser } from '../lib/lib/firebase.js';
 
 export function Register() {
   document.body.style.backgroundColor = '#ffffff';
   const Homediv = document.createElement('div');
+  Homediv.classList.add('homediv');
 
   const buttonHome = document.createElement('button');
   buttonHome.textContent = 'Regresar';
@@ -34,21 +32,11 @@ export function Register() {
   inputEmail.id = 'inputEmail';
   inputEmail.required = true;
 
-  const labelEmail = document.createElement('label');
-  labelEmail.textContent = 'El correo no es un formato valido';
-  labelEmail.id = 'labelEmail';
-  labelEmail.style.display = 'none';
-
   const inputPassword = document.createElement('input');
   inputPassword.setAttribute('type', 'password');
   inputPassword.placeholder = 'Contraseña';
   inputPassword.id = 'inputPassword';
   inputPassword.required = true;
-
-  const labelPassword = document.createElement('label');
-  labelPassword.textContent = 'Las contraseñas no coinciden';
-  labelPassword.id = 'labelPass';
-  labelPassword.style.display = 'none';
 
   const eyeOff = document.createElement('img');
   eyeOff.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/outline_visibility_off_black_24dp.png?alt=media&token=981cfa55-bea9-47cb-a710-c27509e22066');
@@ -73,7 +61,7 @@ export function Register() {
 
   const buttonGoogleRegister = document.createElement('button');
   buttonGoogleRegister.textContent = 'Registrarse con Google';
-  buttonGoogleRegister.id = 'btnGoogleRegister';
+  buttonGoogleRegister.id = 'btnGoogle';
 
   buttonHome.addEventListener('click', () => onNavigate('/'));
 
@@ -99,7 +87,7 @@ export function Register() {
     }
   });
 
-  buttonGoogleRegister.addEventListener('click', () => {
+  buttonGoogleRegister.addEventListener('submit', () => {
     authGoogle(onNavigate);
   });
 
@@ -108,27 +96,24 @@ export function Register() {
     const emailRegister = Homediv.querySelector('#inputEmail').value;
     const passwordRegister = Homediv.querySelector('#inputPassword').value;
     const passwordConfirm = Homediv.querySelector('#inputConfirm').value;
-    if (passwordRegister === passwordConfirm) {
-      auth
-        .createUserWithEmailAndPassword(emailRegister, passwordRegister)
-        .then((result) => {
-          console.log(result);
-          alert('Registro exitoso');
-          onNavigate('/login');
-        })
-        .catch((error) => {
-          console.log(error);
-          labelPassword.style.display = 'block';
-        });
+
+    if (passwordRegister !== passwordConfirm) {
+      labelPassword.style.display = 'block';
+    } else {
+      registerUser(emailRegister, passwordRegister);
     }
-		if ()
+
+    if (emailRegister.type === 'email') {
+      registerUser(emailRegister, passwordRegister);
+    } else {
+      labelEmail.style.display = 'block';
+    }
   });
 
   Homediv.append(buttonHome, labelRegister, labelSubtitle);
   Homediv.appendChild(divFormRegister);
-  divFormRegister.append(inputUsername, inputEmail, labelEmail,
-    inputPassword, labelPassword, eyeOn, eyeOff,
-    inputPasswordConfirm, buttonRegister, buttonGoogleRegister);
+  divFormRegister.append(formRegister, buttonGoogleRegister)(inputUsername, inputEmail,
+    inputPassword, eyeOn, eyeOff, inputPasswordConfirm, buttonRegister);
 
   return Homediv;
 }
