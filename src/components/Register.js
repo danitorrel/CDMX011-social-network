@@ -8,7 +8,7 @@ export function Register() {
   Homediv.classList.add('homediv');
 
   const buttonHome = document.createElement('button');
-  buttonHome.textContent = 'Regresar';
+  buttonHome.classList.add('buttonBack');
 
   const labelRegister = document.createElement('label');
   labelRegister.textContent = 'Regístrate';
@@ -61,6 +61,7 @@ export function Register() {
   buttonRegister.textContent = 'Regístrate';
 
   const labelErr = document.createElement('label');
+  labelErr.classList.add('labelErr');
 
   const buttonGoogleRegister = document.createElement('button');
   buttonGoogleRegister.textContent = 'Registrarse con Google';
@@ -90,7 +91,7 @@ export function Register() {
     }
   });
 
-  buttonGoogleRegister.addEventListener('submit', () => {
+  buttonGoogleRegister.addEventListener('click', () => {
     authGoogle(onNavigate);
   });
 
@@ -101,17 +102,21 @@ export function Register() {
     registerUser(emailRegister, passwordRegister)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log('llegamos', user);
+        console.log(user);
+        userCredential.user.updateProfile({ displayName: document.getElementById('inputUsername').value });
+        alert('Registro exitoso');
+        onNavigate('/login');
       })
       .catch((error) => {
+        console.log(error);
         labelErr.innerText = ErrorValidate(error.code);
       });
   });
 
   Homediv.append(buttonHome, labelRegister, labelSubtitle);
   Homediv.appendChild(divFormRegister);
-  divFormRegister.append(inputUsername, inputEmail,
-    inputPassword, eyeOn, eyeOff, inputPasswordConfirm, buttonRegister, buttonGoogleRegister);
+  divFormRegister.append(inputUsername, inputEmail, inputPassword, eyeOn,
+    eyeOff, inputPasswordConfirm, buttonRegister, labelErr, buttonGoogleRegister);
 
   return Homediv;
 }
