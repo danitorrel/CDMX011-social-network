@@ -43,6 +43,10 @@ export const Home = () => {
   buttonGoogle.textContent = 'Continuar con Google';
   buttonGoogle.id = 'btnGoogle';
 
+  const imgGoogle = document.createElement('img');
+  imgGoogle.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/logoGoogle.png?alt=media&token=558171fa-a3a2-485d-8ee0-14a5493ec4d3');
+  imgGoogle.classList.add('imgGoogle');
+
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
   buttonGoogle.addEventListener('click', () => {
@@ -51,7 +55,7 @@ export const Home = () => {
 
   Homediv.append(airplane, logo, labelWelcome, passport);
   Homediv.appendChild(divButtons);
-  divButtons.append(buttonRegister, buttonLogin, labelOr, buttonGoogle);
+  divButtons.append(buttonRegister, buttonLogin, labelOr, buttonGoogle, imgGoogle);
 
   return Homediv;
 };

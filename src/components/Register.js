@@ -67,6 +67,10 @@ export function Register() {
   buttonGoogleRegister.textContent = 'Registrarse con Google';
   buttonGoogleRegister.id = 'btnGoogle';
 
+  const imgGoogle = document.createElement('img');
+  imgGoogle.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/logoGoogle.png?alt=media&token=558171fa-a3a2-485d-8ee0-14a5493ec4d3');
+  imgGoogle.classList.add('imgGoogleReg');
+
   buttonHome.addEventListener('click', () => onNavigate('/'));
 
   eyeOff.addEventListener('click', () => {
@@ -116,7 +120,7 @@ export function Register() {
   Homediv.append(buttonHome, labelRegister, labelSubtitle);
   Homediv.appendChild(divFormRegister);
   divFormRegister.append(inputUsername, inputEmail, inputPassword, eyeOn,
-    eyeOff, inputPasswordConfirm, buttonRegister, labelErr, buttonGoogleRegister);
+    eyeOff, inputPasswordConfirm, buttonRegister, buttonGoogleRegister, imgGoogle, labelErr);
 
   return Homediv;
 }

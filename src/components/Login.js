@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-cycle
 import { loginUser } from '../lib/lib/firebase.js';
 import { onNavigate } from '../main.js';
 
@@ -28,6 +27,16 @@ export const Login = () => {
   password.placeholder = 'Contraseña';
   password.id = 'passLogin';
 
+  const eyeOff = document.createElement('img');
+  eyeOff.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/outline_visibility_off_black_24dp.png?alt=media&token=981cfa55-bea9-47cb-a710-c27509e22066');
+  eyeOff.id = 'eyeOffLogin';
+  eyeOff.style.display = 'block';
+
+  const eyeOn = document.createElement('img');
+  eyeOn.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/outline_visibility_black_24dp.png?alt=media&token=655a1895-dbf3-4495-a2f5-7b1f1bf977b1');
+  eyeOn.id = 'eyeOnLogin';
+  eyeOn.style.display = 'none';
+
   const buttonLogin = document.createElement('button');
   buttonLogin.textContent = 'Inicia sesión';
   buttonLogin.id = 'buttonLogin';
@@ -36,7 +45,28 @@ export const Login = () => {
   buttonGoogle.textContent = 'Continuar con Google';
   buttonGoogle.id = 'btnGoogle';
 
+  const imgGoogle = document.createElement('img');
+  imgGoogle.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/logoGoogle.png?alt=media&token=558171fa-a3a2-485d-8ee0-14a5493ec4d3');
+  imgGoogle.classList.add('imgGoogleLog');
+
   buttonHome.addEventListener('click', () => onNavigate('/'));
+
+  eyeOff.addEventListener('click', () => {
+    const passwordValue = Homediv.querySelector('#passLogin');
+    if (passwordValue.type === 'password') {
+      passwordValue.type = 'text';
+      eyeOff.style.display = 'none';
+      eyeOn.style.display = 'block';
+    }
+  });
+
+  eyeOn.addEventListener('click', () => {
+    const passwordValue = Homediv.querySelector('#passLogin');
+    if (passwordValue.type === 'text') {
+      eyeOff.style.display = 'block';
+      eyeOn.style.display = 'none';
+    }
+  });
 
   buttonLogin.addEventListener('click', (e) => {
     e.preventDefault();
@@ -46,7 +76,7 @@ export const Login = () => {
   });
 
   Homediv.append(buttonHome, labelLogin, subLabel, divFormLogin);
-  divFormLogin.append(username, password, buttonLogin, buttonGoogle);
+  divFormLogin.append(username, password, eyeOff, eyeOn, buttonLogin, buttonGoogle, imgGoogle);
 
   return Homediv;
 };

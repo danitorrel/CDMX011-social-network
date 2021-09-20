@@ -49,11 +49,11 @@ div {
 button {
   border-radius: 15px;
   height: 2rem;
-  margin: 18px;
 	font-family: 'Merriweather Sans', sans-serif;
 	font-weight: 500;
 	font-size: 13px;
 	letter-spacing: 1px;
+	margin: 18px;
 }
 
 .buttonBack {
@@ -91,6 +91,25 @@ button {
 	border: 1px solid #C8C8C8;
 	color: #6D6D6D;
 	width: 210px;
+	padding-left: 2rem;
+}
+
+.imgGoogle {
+	position: absolute;
+	left: 13%;
+	top: 187px;
+}
+
+.imgGoogleLog {
+	position: absolute;
+	left: 22%;
+	top: 230px;
+}
+
+.imgGoogleReg {
+	position: absolute;
+	left: 21%;
+	top: 331px;
 }
 
 #labelO {
@@ -108,11 +127,28 @@ button {
 	opacity: 0.6;
 }
 
-#labelRegister, .labelLogin {
+#eyeOffLogin, #eyeOnLogin {
+	position: absolute;
+	width: 20px;
+	right: 50px;
+	top: 82px;
+	opacity: 0.6;
+}
+
+#labelRegister {
 	font-family: 'Bowlby One', cursive;
 	font-size: 28px;
 	position: relative;
-	right: 9%;
+	right: 28px;
+	top: 50px;
+	color: #F25040;
+}
+
+.labelLogin {
+	font-family: 'Bowlby One', cursive;
+	font-size: 28px;
+	position: relative;
+	left: -2%;
 	top: 50px;
 	color: #F25040;
 }
@@ -126,7 +162,7 @@ button {
 	letter-spacing: 1px;
 	position: relative;
 	top: 45px;
-	right: 10%;
+	right: 8%;
 	margin-bottom: 40px;
 }
 

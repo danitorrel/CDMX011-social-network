@@ -21,7 +21,8 @@ export const loginUser = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     const user = userCredential.user;
-    console.log(userCredential.user);
+    console.log(user);
+		console.log(user.displayName);
     onNavigate('/wall');
   })
   .catch((error) => {
