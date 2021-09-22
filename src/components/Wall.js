@@ -37,5 +37,5 @@ export const Wall = () => {
   wallDiv.append(postBox);
   postBox.append(labelUser, labelDate, post, btnPublish);
 
-  return wallDiv;
+  return wallDiv; //
 };

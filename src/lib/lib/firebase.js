@@ -29,7 +29,7 @@ export const loginUser = (email, password) => firebase.auth()
     const errorMessage = error.message;
     console.log(errorMessage);
   });
-
+// Posts
 const db = firebase.firestore();
 export const getUser = () => firebase.auth().currentUser;
 

@@ -122,5 +122,5 @@ export const Register = () => {
   divFormRegister.append(inputUsername, inputEmail, inputPassword, eyeOn,
     eyeOff, inputPasswordConfirm, buttonRegister, buttonGoogleRegister, imgGoogle, labelErr);
 
-  return Homediv;
+  return Homediv; //
 };
