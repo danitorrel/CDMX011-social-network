@@ -2,7 +2,7 @@ import { onNavigate } from '../main.js';
 import { authGoogle, registerUser } from '../lib/lib/firebase.js';
 import { ErrorValidate } from '../utils/ErrorValidate.js';
 
-export function Register() {
+export const Register = () => {
   document.body.style.backgroundColor = '#ffffff';
   const Homediv = document.createElement('div');
   Homediv.classList.add('homediv');
@@ -123,4 +123,4 @@ export function Register() {
     eyeOff, inputPasswordConfirm, buttonRegister, buttonGoogleRegister, imgGoogle, labelErr);
 
   return Homediv;
-}
+};

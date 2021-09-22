@@ -22,10 +22,18 @@ export const loginUser = (email, password) => firebase.auth()
   .then((userCredential) => {
     const user = userCredential.user;
     console.log(user);
-		console.log(user.displayName);
+    console.log(user.displayName);
     onNavigate('/wall');
   })
   .catch((error) => {
-    console.log(error.message);
     const errorMessage = error.message;
+    console.log(errorMessage);
   });
+
+const db = firebase.firestore();
+export const getUser = () => firebase.auth().currentUser;
+
+export const posts = (username, post) => db.collection('posts').add({
+  username,
+  post,
+});
