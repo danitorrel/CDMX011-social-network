@@ -1,5 +1,6 @@
 import { loginUser } from '../lib/lib/firebase.js';
 import { onNavigate } from '../main.js';
+import { ErrorValidate } from '../utils/ErrorValidate.js';
 
 export const Login = () => {
   document.body.style.backgroundColor = '#ffffff';
@@ -49,6 +50,9 @@ export const Login = () => {
   imgGoogle.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/logoGoogle.png?alt=media&token=558171fa-a3a2-485d-8ee0-14a5493ec4d3');
   imgGoogle.classList.add('imgGoogleLog');
 
+	const labelErr = document.createElement('label');
+  labelErr.classList.add('labelErr');
+
   buttonHome.addEventListener('click', () => onNavigate('/'));
 
   eyeOff.addEventListener('click', () => {
@@ -72,11 +76,23 @@ export const Login = () => {
     e.preventDefault();
     const usernameLogin = Homediv.querySelector('#emailLogin').value;
     const passwordLogin = Homediv.querySelector('#passLogin').value;
-    loginUser(usernameLogin, passwordLogin);
+    loginUser(usernameLogin, passwordLogin)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        console.log(user.displayName);
+        onNavigate('/wall');
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        labelErr.innerText = ErrorValidate(error.code);
+      });
   });
 
   Homediv.append(buttonHome, labelLogin, subLabel, divFormLogin);
-  divFormLogin.append(username, password, eyeOff, eyeOn, buttonLogin, buttonGoogle, imgGoogle);
+  divFormLogin.append(username, password, eyeOff, eyeOn,
+    buttonLogin, buttonGoogle, imgGoogle, labelErr);
 
   return Homediv;
 };

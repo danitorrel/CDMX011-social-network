@@ -18,20 +18,22 @@ export const authGoogle = () => {
 };
 
 export const loginUser = (email, password) => firebase.auth()
-  .signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    console.log(user);
-    console.log(user.displayName);
-    onNavigate('/wall');
+  .signInWithEmailAndPassword(email, password);
+
+export const logOut = () => firebase.auth()
+  .signOut()
+  .then(() => {
+    onNavigate('/');
   })
   .catch((error) => {
-    const errorMessage = error.message;
-    console.log(errorMessage);
+    console.log(error.message);
   });
+
 // Posts
 const db = firebase.firestore();
 export const getUser = () => firebase.auth().currentUser;
+
+export const getPosts = () => db.collection('posts').get();
 
 export const posts = (username, post) => db.collection('posts').add({
   username,
