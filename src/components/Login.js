@@ -8,6 +8,10 @@ export const Login = () => {
   const buttonHome = document.createElement('button');
   buttonHome.classList.add('buttonBack');
 
+  const imgPin = document.createElement('img');
+  imgPin.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/img-pin-blur.png?alt=media&token=0d881422-8e25-4f68-aa97-60a6061bcf44');
+  imgPin.classList.add('imgPin');
+
   const labelLogin = document.createElement('label');
   labelLogin.textContent = 'Inicia sesión';
   labelLogin.classList.add('labelLogin');
@@ -50,7 +54,7 @@ export const Login = () => {
   imgGoogle.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/logoGoogle.png?alt=media&token=558171fa-a3a2-485d-8ee0-14a5493ec4d3');
   imgGoogle.classList.add('imgGoogleLog');
 
-	const labelErr = document.createElement('label');
+  const labelErr = document.createElement('label');
   labelErr.classList.add('labelErr');
 
   buttonHome.addEventListener('click', () => onNavigate('/'));
@@ -90,7 +94,7 @@ export const Login = () => {
       });
   });
 
-  Homediv.append(buttonHome, labelLogin, subLabel, divFormLogin);
+  Homediv.append(buttonHome, imgPin, labelLogin, subLabel, divFormLogin);
   divFormLogin.append(username, password, eyeOff, eyeOn,
     buttonLogin, buttonGoogle, imgGoogle, labelErr);
 

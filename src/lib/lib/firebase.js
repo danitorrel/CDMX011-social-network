@@ -24,9 +24,11 @@ export const logOut = () => firebase.auth()
   .signOut()
   .then(() => {
     onNavigate('/');
+    console.log('Terminó sesión exitosamente');
   })
   .catch((error) => {
     console.log(error.message);
+    alert('Lo sentimos. Ha ocurrido un error');
   });
 
 // Posts

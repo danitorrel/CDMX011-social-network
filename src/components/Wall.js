@@ -1,11 +1,16 @@
-import { getPosts, getUser, posts } from '../lib/lib/firebase.js';
+import { getUser, logOut, posts } from '../lib/lib/firebase.js';
+import { divPosts, loadPosts } from '../utils/createPost.js';
 
 export const Wall = () => {
   const wallDiv = document.createElement('div');
   wallDiv.id = 'wallDiv';
 
-  const labelWall = document.createElement('label');
-  labelWall.textContent = 'Log out';
+  const btnLogOut = document.createElement('button');
+  btnLogOut.textContent = 'Log out';
+
+  btnLogOut.addEventListener('click', () => {
+    logOut();
+  });
 
   const postBox = document.createElement('div');
   postBox.id = 'postBox';
@@ -24,19 +29,7 @@ export const Wall = () => {
   btnPublish.id = 'btnPublish';
   btnPublish.textContent = 'Publicar';
 
-  const divPosts = document.createElement('div');
-
-  const areaPost = document.createElement('p');
-  areaPost.classList.add('areaPost');
-
-  window.addEventListener('DOMContentLoaded', async (e) => {
-    const querySnapshot = await getPosts();
-    querySnapshot.forEach((doc) => {
-      const contentPost = doc.data();
-      console.log(doc.data());
-      areaPost.textContent = contentPost.username + contentPost.post;
-    });
-  });
+  window.onload = loadPosts();
 
   btnPublish.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -45,18 +38,16 @@ export const Wall = () => {
     await posts(user, textUser)
       .then((result) => {
         document.getElementById('post').value = '';
-        console.log(textUser);
-        console.log(result, user);
+        loadPosts();
       })
       .catch((error) => {
         console.log(error);
       });
   });
 
-  wallDiv.appendChild(labelWall);
+  wallDiv.appendChild(btnLogOut);
   wallDiv.append(postBox);
   postBox.append(labelUser, labelDate, postUser, btnPublish, divPosts);
-  divPosts.appendChild(areaPost);
 
   return wallDiv;
 };
