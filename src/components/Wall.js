@@ -25,29 +25,34 @@ export const Wall = () => {
   postUser.id = 'post';
   postUser.placeholder = 'Escribe tus consejos aqui';
 
+  const errorText = document.createElement('label');
+  errorText.classList.add('errorTextLabel');
+
   const btnPublish = document.createElement('button');
   btnPublish.id = 'btnPublish';
   btnPublish.textContent = 'Publicar';
 
   window.onload = loadPosts();
 
-  btnPublish.addEventListener('click', async (e) => {
+  btnPublish.addEventListener('click', (e) => {
     e.preventDefault();
     const textUser = document.getElementById('post').value;
     const user = getUser().displayName;
-    await posts(user, textUser)
-      .then((result) => {
-        document.getElementById('post').value = '';
-        loadPosts();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const text = (textUser === '')
+      ? errorText.textContent = 'No has escrito nada aún'
+      : posts(user, textUser)
+        .then((result) => {
+          document.getElementById('post').value = '';
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    return text;
   });
 
   wallDiv.appendChild(btnLogOut);
   wallDiv.append(postBox);
-  postBox.append(labelUser, labelDate, postUser, btnPublish, divPosts);
+  postBox.append(labelUser, labelDate, postUser, errorText, btnPublish, divPosts);
 
   return wallDiv;
 };

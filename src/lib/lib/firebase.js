@@ -32,10 +32,13 @@ export const logOut = () => firebase.auth()
   });
 
 // Posts
-const db = firebase.firestore();
+export const db = firebase.firestore();
+
 export const getUser = () => firebase.auth().currentUser;
 
 export const getPosts = () => db.collection('posts').get();
+
+export const updatePosts = (callback) => db.collection('posts').onSnapshot(callback);
 
 export const posts = (username, post) => db.collection('posts').add({
   username,
