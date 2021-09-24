@@ -8,10 +8,6 @@ export const Wall = () => {
   const btnLogOut = document.createElement('button');
   btnLogOut.textContent = 'Log out';
 
-  btnLogOut.addEventListener('click', () => {
-    logOut();
-  });
-
   const postBox = document.createElement('div');
   postBox.id = 'postBox';
 
@@ -34,24 +30,29 @@ export const Wall = () => {
 
   window.onload = loadPosts();
 
+  btnLogOut.addEventListener('click', () => {
+    logOut();
+  });
+
   btnPublish.addEventListener('click', (e) => {
     e.preventDefault();
-    const textUser = document.getElementById('post').value;
+    const textUser = wallDiv.querySelector('#post').value;
     const user = getUser().displayName;
-    const text = (textUser === '')
+    const newPost = (textUser === '')
       ? errorText.textContent = 'No has escrito nada aún'
       : posts(user, textUser)
         .then((result) => {
-          document.getElementById('post').value = '';
+          wallDiv.querySelector('#post').value = '';
+          errorText.textContent = '';
         })
         .catch((error) => {
           console.log(error.message);
         });
-    return text;
+    return newPost;
   });
 
   wallDiv.appendChild(btnLogOut);
-  wallDiv.append(postBox);
+  wallDiv.appendChild(postBox);
   postBox.append(labelUser, labelDate, postUser, errorText, btnPublish, divPosts);
 
   return wallDiv;

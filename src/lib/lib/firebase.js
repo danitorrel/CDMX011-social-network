@@ -40,6 +40,8 @@ export const getPosts = () => db.collection('posts').get();
 
 export const updatePosts = (callback) => db.collection('posts').onSnapshot(callback);
 
+export const deletePost = (id) => db.collection('posts').doc(id).delete();
+
 export const posts = (username, post) => db.collection('posts').add({
   username,
   post,
