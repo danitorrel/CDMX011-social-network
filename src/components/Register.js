@@ -108,8 +108,6 @@ export const Register = () => {
       ? labelErr.textContent = 'Las contraseñas no coinciden'
       : registerUser(emailRegister, passwordRegister)
         .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
           userCredential.user.updateProfile({ displayName: document.getElementById('inputUsername').value });
           alert('Registro exitoso');
           onNavigate('/login');

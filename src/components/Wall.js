@@ -37,9 +37,7 @@ export const Wall = () => {
 
     window.onload = loadPosts();
 
-    btnLogOut.addEventListener('click', () => {
-      logOut();
-    });
+    btnLogOut.addEventListener('click', () => logOut());
 
     btnPublish.addEventListener('click', (e) => {
       e.preventDefault();
@@ -61,7 +59,7 @@ export const Wall = () => {
     wallDiv.append(logoWall, labelUser, btnLogOut, postBox);
     postBox.append(postUser, errorText, btnPublish, divPosts);
   } else {
-    console.log('error');
+    console.log('error de carga');
   }
   return wallDiv;
 };

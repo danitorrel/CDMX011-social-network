@@ -31,7 +31,6 @@ export const logOut = () => firebase.auth()
     alert('Lo sentimos. Ha ocurrido un error');
   });
 
-// Posts
 export const db = firebase.firestore();
 
 export const getUser = () => firebase.auth().currentUser;

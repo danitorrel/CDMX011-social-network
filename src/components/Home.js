@@ -47,9 +47,7 @@ export const Home = () => {
 
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
-  buttonGoogle.addEventListener('click', () => {
-    authGoogle(onNavigate);
-  });
+  buttonGoogle.addEventListener('click', () => authGoogle(onNavigate));
 
   Homediv.append(airplane, logo, labelWelcome, passport);
   Homediv.appendChild(divButtons);

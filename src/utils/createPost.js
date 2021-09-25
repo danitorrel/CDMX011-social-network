@@ -20,8 +20,8 @@ export const loadPosts = async () => {
       areaPost.textContent = contentPost.post;
 
       const btnDelete = document.createElement('button');
-      btnDelete.textContent = 'eliminar';
       btnDelete.classList.add('btnDelete');
+      btnDelete.textContent = 'eliminar';
       btnDelete.dataset.id = contentPost.id;
 
       const btnsDelete = divPosts.querySelectorAll('.btnDelete');
@@ -41,6 +41,10 @@ export const loadPosts = async () => {
           btnMsgDelete.classList.add('btnMsgDelete');
           btnMsgDelete.textContent = 'Eliminar';
 
+          const btnMsgCancel = document.createElement('button');
+          btnMsgCancel.classList.add('btnCancel');
+          btnMsgCancel.textContent = 'Cancelar';
+
           btnMsgDelete.addEventListener('click', async (e) => {
             try {
               await deletePost(contentPost.id);
@@ -50,9 +54,13 @@ export const loadPosts = async () => {
             }
           });
 
+          btnMsgCancel.addEventListener('click', (e) => {
+            modalContainer.classList.remove('modalContainer');
+          });
+
           divPosts.appendChild(modalContainer);
           modalContainer.appendChild(modal);
-          modal.append(msgDelete, btnMsgDelete);
+          modal.append(msgDelete, btnMsgDelete, btnMsgCancel);
         });
       });
 
