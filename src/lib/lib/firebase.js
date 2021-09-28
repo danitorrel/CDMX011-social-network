@@ -20,6 +20,9 @@ export const authGoogle = () => {
 export const loginUser = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password);
 
+// eslint-disable-next-line max-len
+export const userPersistence = () => firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
 export const logOut = () => firebase.auth()
   .signOut()
   .then(() => {
@@ -30,6 +33,8 @@ export const logOut = () => firebase.auth()
     console.log(error.message);
     alert('Lo sentimos. Ha ocurrido un error');
   });
+
+export const auth = firebase.auth();
 
 export const db = firebase.firestore();
 

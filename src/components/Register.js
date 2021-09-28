@@ -113,7 +113,6 @@ export const Register = () => {
           onNavigate('/login');
         })
         .catch((error) => {
-          console.log(error);
           labelErr.innerText = ErrorValidate(error.code);
         });
     return validate;

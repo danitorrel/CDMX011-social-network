@@ -1,4 +1,4 @@
-import { loginUser } from '../lib/lib/firebase.js';
+import { loginUser, userPersistence } from '../lib/lib/firebase.js';
 import { onNavigate } from '../main.js';
 import { ErrorValidate } from '../utils/ErrorValidate.js';
 
@@ -78,19 +78,23 @@ export const Login = () => {
 
   buttonLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    const usernameLogin = Homediv.querySelector('#emailLogin').value;
+    const emailLogin = Homediv.querySelector('#emailLogin').value;
     const passwordLogin = Homediv.querySelector('#passLogin').value;
-    loginUser(usernameLogin, passwordLogin)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        onNavigate('/wall');
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        labelErr.innerText = ErrorValidate(error.code);
-      });
+    userPersistence()
+      .then((() => loginUser(emailLogin, passwordLogin)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          onNavigate('/wall');
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          labelErr.innerText = ErrorValidate(error.code);
+        })
+        .catch((error) => {
+          console.log('Persistance failed');
+        })));
   });
 
   Homediv.append(buttonHome, imgPin, labelLogin, subLabel, divFormLogin);

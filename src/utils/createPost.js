@@ -42,7 +42,6 @@ export const loadPosts = async () => {
           btnMsgDelete.textContent = 'Eliminar';
 
           const btnMsgCancel = document.createElement('button');
-          btnMsgCancel.classList.add('btnCancel');
           btnMsgCancel.textContent = 'Cancelar';
 
           btnMsgDelete.addEventListener('click', async (e) => {
@@ -54,8 +53,8 @@ export const loadPosts = async () => {
             }
           });
 
-          btnMsgCancel.addEventListener('click', (e) => {
-            modalContainer.classList.remove('modalContainer');
+          btnMsgCancel.addEventListener('click', () => {
+            modalContainer.remove('modalContainer');
           });
 
           divPosts.appendChild(modalContainer);

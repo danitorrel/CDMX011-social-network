@@ -2,6 +2,7 @@ import { Home } from './components/Home.js';
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
 import { Wall } from './components/Wall.js';
+import firebase from './lib/lib/secret.js';
 
 const rootDiv = document.getElementById('root');
 
@@ -35,3 +36,11 @@ window.onpopstate = () => {
 };
 
 rootDiv.appendChild(components());
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    onNavigate('/wall');
+  } else {
+    onNavigate('/');
+  }
+});
