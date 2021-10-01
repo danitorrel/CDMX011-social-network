@@ -4,6 +4,7 @@ import { authGoogle } from '../lib/lib/firebase.js';
 export const Home = () => {
   document.body.style.backgroundColor = '#F2B705';
   const Homediv = document.createElement('div');
+	Homediv.classList.add('homediv');
 
   const airplane = document.createElement('img');
   airplane.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/avion.png?alt=media&token=1719248f-44c5-4d22-b32b-664e31992608');

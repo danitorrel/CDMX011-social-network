@@ -11,7 +11,6 @@ export const Wall = () => {
   let displayName = '';
   if (user) {
     displayName = user.displayName;
-    console.log(displayName);
   }
   const logoWall = document.createElement('img');
   logoWall.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/logo-pata-de-perro-red.png?alt=media&token=dc5ad00d-8d94-4a1b-88a2-1bf72802fb04');
@@ -19,10 +18,16 @@ export const Wall = () => {
   logoWall.classList.add('logoWall');
 
   const labelUser = document.createElement('label');
+  labelUser.classList.add('labelUser');
   labelUser.innerText = displayName;
 
   const btnLogOut = document.createElement('button');
+  btnLogOut.classList.add('btnLogOut');
   btnLogOut.textContent = 'Log out';
+
+  const labelWelcome = document.createElement('label');
+  labelWelcome.classList.add('labelWelcome');
+  labelWelcome.innerText = 'Bienvenid@';
 
   const postBox = document.createElement('div');
   postBox.id = 'postBox';
@@ -58,7 +63,7 @@ export const Wall = () => {
     return newPost;
   });
 
-  wallDiv.append(logoWall, labelUser, btnLogOut, postBox);
+  wallDiv.append(logoWall, labelUser, btnLogOut, labelWelcome, postBox);
   postBox.append(postUser, errorText, btnPublish, divPosts);
 
   return wallDiv;

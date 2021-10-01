@@ -11,6 +11,13 @@ div {
   margin-top: 10px;
 }
 
+.homediv {
+	align-items: center;
+  justify-content: center;
+}
+
+/*sacar el align items y justify content del tag div general*/
+
 #airplane {
 	position: relative;
 	width: 142px;
@@ -205,4 +212,84 @@ input::placeholder {
 	font-weight: 400;
 	color: #AEAEAE;
 	letter-spacing: .5px;
+}
+
+.logoWall {
+	position: relative;
+	width: 90px;
+	right: 6rem;
+	top: 2rem;
+}
+
+.labelUser {
+	position: relative;
+	left: 7rem;
+	font-size: 16px;
+	font-family: 'Merriweather Sans', sans-serif;
+	font-weight: 500;
+	color: #252525;
+}
+
+.btnLogOut {
+	position: relative;
+	left: 6rem;
+	margin-top: 0;
+	border: none;
+	background-color: #ffffff;
+	font-size: 15px;
+	font-family: 'Merriweather Sans', sans-serif;
+	color: #F25040;
+}
+
+.labelWelcome {
+	position: relative;
+	right: 75px;
+	font-family: 'Bowlby One', cursive;
+	font-size: 18px;
+	color: #464646;
+}
+
+#post {
+	width: 257px;
+	border: none;
+	margin-top: 25px;
+	font-family: 'Merriweather Sans', sans-serif;
+}
+
+#btnPublish {
+	position: relative;
+	left: 5rem;
+	width: 90px;
+	border: none;
+	background-color: #F25040;
+	color: #ffffff;
+}
+
+.divPost {
+	border: 1px solid #E3E3E3;
+	border-radius: 15px;
+	box-sizing: border-box;
+	box-shadow: 0 0 15px #e4e4e4;
+	top: 20px;
+	width: 295px;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.postUn {
+	position: relative;
+	right: 110px;
+	font-size: 16px;
+	font-family: 'Merriweather Sans', sans-serif;
+	font-weight: 600;
+	color: #E4171D;
+}
+
+.areaPost {
+	position: relative;
+	font-size: 14px;
+	font-family: 'Merriweather Sans', sans-serif;
+	font-weight: 400;
+	color: #000000;
 }
