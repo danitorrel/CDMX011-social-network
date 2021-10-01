@@ -1,4 +1,4 @@
-import { updatePosts, deletePost } from '../lib/lib/firebase.js';
+import { updatePosts, deletePost, getUser } from '../lib/lib/firebase.js';
 
 export const divPosts = document.createElement('div');
 
@@ -89,9 +89,14 @@ export const loadPosts = async () => {
       btnsEdit.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           console.log(e.target.dataset.id);
-					editArea.style.display = 'block';
+          editArea.style.display = 'block';
         });
       });
+
+      if (contentPost.username !== getUser().displayName) {
+        btnDelete.style.display = 'none';
+        btnEdit.style.display = 'none';
+      }
     });
   });
 };

@@ -95,9 +95,7 @@ export const Register = () => {
     }
   });
 
-  buttonGoogleRegister.addEventListener('click', () => {
-    authGoogle(onNavigate);
-  });
+  buttonGoogleRegister.addEventListener('click', () => authGoogle(onNavigate));
 
   buttonRegister.addEventListener('click', (e) => {
     e.preventDefault();
