@@ -1,9 +1,9 @@
-import { updatePosts, deletePost, getUser } from '../lib/lib/firebase.js';
+import { onGetPosts, deletePost, getUser, updatePost } from '../lib/lib/firebase.js';
 
 export const divPosts = document.createElement('div');
 
 export const loadPosts = async () => {
-  updatePosts((querySnapshot) => {
+  onGetPosts((querySnapshot) => {
     divPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const contentPost = doc.data();
@@ -16,6 +16,10 @@ export const loadPosts = async () => {
       postUsername.classList.add('postUn');
       postUsername.textContent = contentPost.username;
 
+      const date = document.createElement('p');
+      date.classList.add('date');
+      date.textContent = `${contentPost.date} ${contentPost.time}`;
+
       const areaPost = document.createElement('p');
       areaPost.classList.add('areaPost');
       areaPost.textContent = contentPost.post;
@@ -24,22 +28,28 @@ export const loadPosts = async () => {
       editArea.classList.add('editArea');
       editArea.style.display = 'none';
       editArea.textContent = contentPost.post;
+      editArea.dataset.id = contentPost.post;
 
       const divBtns = document.createElement('div');
       divBtns.classList.add('divBtns');
 
       const like = document.createElement('button');
-      like.textContent = 'like';
+      like.classList.add('like');
+      like.dataset.id = contentPost.id;
 
       const btnDelete = document.createElement('button');
       btnDelete.classList.add('btnDelete');
-      btnDelete.textContent = 'eliminar';
       btnDelete.dataset.id = contentPost.id;
 
       const btnEdit = document.createElement('button');
       btnEdit.classList.add('btnEdit');
-      btnEdit.textContent = 'Editar';
       btnEdit.dataset.id = contentPost.id;
+
+      const btnSave = document.createElement('button');
+      btnSave.classList.add('btnSave');
+      btnSave.textContent = 'Guardar';
+      btnSave.style.display = 'none';
+      btnSave.dataset.id = contentPost.id;
 
       const modalContainer = document.createElement('div');
       modalContainer.classList.add('modalContainer');
@@ -62,8 +72,8 @@ export const loadPosts = async () => {
       btnMsgCancel.textContent = 'Cancelar';
 
       divPosts.append(divPost);
-      divPost.append(postUsername, areaPost, editArea, divBtns, modalContainer);
-      divBtns.append(like, btnDelete, btnEdit);
+      divPost.append(postUsername, date, areaPost, editArea, divBtns, modalContainer);
+      divBtns.append(like, btnDelete, btnEdit, btnSave);
       modalContainer.appendChild(modal);
       modal.append(msgDelete, btnMsgDelete, btnMsgCancel);
 
@@ -89,7 +99,30 @@ export const loadPosts = async () => {
       btnsEdit.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           console.log(e.target.dataset.id);
+          areaPost.style.display = 'none';
           editArea.style.display = 'block';
+          btnSave.style.display = 'block';
+          btnDelete.style.display = 'none';
+          btnEdit.style.display = 'none';
+          like.style.display = 'none';
+        });
+      });
+
+      const btnsSave = divPost.querySelectorAll('.btnSave');
+      btnsSave.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          const postChange = divPost.querySelector('.editArea').value;
+          updatePost(contentPost.id, {
+            post: postChange,
+          });
+          editArea.style.display = 'block';
+        });
+      });
+
+      const btnsLike = divBtns.querySelectorAll('.like');
+      btnsLike.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          console.log(e.target);
         });
       });
 
