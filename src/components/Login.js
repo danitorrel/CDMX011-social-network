@@ -5,6 +5,8 @@ import { ErrorValidate } from '../utils/ErrorValidate.js';
 export const Login = () => {
   document.body.style.backgroundColor = '#ffffff';
   const Homediv = document.createElement('div');
+  Homediv.classList.add('homediv');
+
   const buttonHome = document.createElement('button');
   buttonHome.classList.add('buttonBack');
 

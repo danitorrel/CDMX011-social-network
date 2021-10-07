@@ -51,6 +51,11 @@ export const loadPosts = async () => {
       btnSave.style.display = 'none';
       btnSave.dataset.id = contentPost.id;
 
+      const btnCancelEdit = document.createElement('button');
+      btnCancelEdit.classList.add('btnCancelEdit');
+      btnCancelEdit.textContent = 'Cancelar';
+      btnCancelEdit.style.display = 'none';
+
       const modalContainer = document.createElement('div');
       modalContainer.classList.add('modalContainer');
       modalContainer.style.display = 'none';
@@ -73,7 +78,7 @@ export const loadPosts = async () => {
 
       divPosts.append(divPost);
       divPost.append(postUsername, date, areaPost, editArea, divBtns, modalContainer);
-      divBtns.append(like, btnDelete, btnEdit, btnSave);
+      divBtns.append(like, btnDelete, btnEdit, btnSave, btnCancelEdit);
       modalContainer.appendChild(modal);
       modal.append(msgDelete, btnMsgDelete, btnMsgCancel);
 
@@ -82,6 +87,7 @@ export const loadPosts = async () => {
       btnsDelete.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           modalDisplay.style.display = 'block';
+          modalContainer.classList.add('show');
           modalDisplay.addEventListener('click', (event) => {
             const deleteConfirm = () => deletePost(e.target.dataset.id);
             if (event.target.classList.contains('btnMsgDelete')) {
@@ -102,6 +108,7 @@ export const loadPosts = async () => {
           areaPost.style.display = 'none';
           editArea.style.display = 'block';
           btnSave.style.display = 'block';
+          btnCancelEdit.style.display = 'block';
           btnDelete.style.display = 'none';
           btnEdit.style.display = 'none';
           like.style.display = 'none';
@@ -117,6 +124,17 @@ export const loadPosts = async () => {
           });
           editArea.style.display = 'block';
         });
+      });
+
+      const btnsCancelEd = divPost.querySelector('.btnCancelEdit');
+      btnsCancelEd.addEventListener('click', () => {
+        areaPost.style.display = 'block';
+        editArea.style.display = 'none';
+        btnSave.style.display = 'none';
+        btnCancelEdit.style.display = 'none';
+        btnDelete.style.display = 'block';
+        btnEdit.style.display = 'block';
+        like.style.display = 'block';
       });
 
       const btnsLike = divBtns.querySelectorAll('.like');

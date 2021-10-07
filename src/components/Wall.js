@@ -30,7 +30,7 @@ export const Wall = () => {
 
   const labelWelcome = document.createElement('label');
   labelWelcome.classList.add('labelWelcome');
-  labelWelcome.innerText = 'Bienvenid@';
+  labelWelcome.innerText = 'Bienvenide';
 
   const postBox = document.createElement('div');
   postBox.id = 'postBox';
