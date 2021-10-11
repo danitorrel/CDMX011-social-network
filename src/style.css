@@ -309,7 +309,6 @@ input::placeholder {
 }
 
 .date {
-	position: relative;
 	font-size: 14px;
 	font-family: 'Merriweather Sans', sans-serif;
 	font-weight: 400;
@@ -329,16 +328,6 @@ input::placeholder {
 	display: flex;
 	flex-direction: row;
 	margin-left: 20px;
-}
-
-.like {
-	background-image: url(https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/ritmo-cardiaco.png?alt=media&token=eaadd91c-4a04-4648-83d6-7c01606fd52e);
-	background-repeat: no-repeat;
-	background-color: white;
-	width: 35px;
-	height: 35px;
-	border-color: none;
-	border-style: none;
 }
 
 .btnDelete {

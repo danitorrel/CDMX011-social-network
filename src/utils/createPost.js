@@ -1,4 +1,4 @@
-import { onGetPosts, deletePost, getUser, updatePost } from '../lib/lib/firebase.js';
+import { onGetPosts, deletePost, getUser, updatePost, likePost, dislikePost } from '../lib/lib/firebase.js';
 
 export const divPosts = document.createElement('div');
 
@@ -9,6 +9,8 @@ export const loadPosts = async () => {
       const contentPost = doc.data();
       contentPost.id = doc.id;
 
+      const userLike = contentPost.like.includes(getUser().email);
+
       const divPost = document.createElement('div');
       divPost.classList.add('divPost');
 
@@ -18,7 +20,7 @@ export const loadPosts = async () => {
 
       const date = document.createElement('p');
       date.classList.add('date');
-      date.textContent = `${contentPost.date} ${contentPost.time}`;
+      date.textContent = `${contentPost.date} · ${contentPost.time}`;
 
       const areaPost = document.createElement('p');
       areaPost.classList.add('areaPost');
@@ -33,9 +35,13 @@ export const loadPosts = async () => {
       const divBtns = document.createElement('div');
       divBtns.classList.add('divBtns');
 
-      const like = document.createElement('button');
-      like.classList.add('like');
+      const like = document.createElement('img');
+      like.setAttribute('src', `${userLike ? 'https://firebasestorage.googleapis.com/v0/b/pata-de-perro-3a9dd.appspot.com/o/ritmo-cardiaco.png?alt=media&token=eaadd91c-4a04-4648-83d6-7c01606fd52e' : 'https://firebasestorage.googleapis.com/v0/b/social-network-ba343.appspot.com/o/ritmo-cardiaco.png?alt=media&token=7b66552b-b1e2-4f0e-8a67-51324dfa502f'}`);
       like.dataset.id = contentPost.id;
+      like.id = 'like';
+
+      const count = document.createElement('label');
+      count.textContent = contentPost.like.length;
 
       const btnDelete = document.createElement('button');
       btnDelete.classList.add('btnDelete');
@@ -78,7 +84,7 @@ export const loadPosts = async () => {
 
       divPosts.append(divPost);
       divPost.append(postUsername, date, areaPost, editArea, divBtns, modalContainer);
-      divBtns.append(like, btnDelete, btnEdit, btnSave, btnCancelEdit);
+      divBtns.append(like, count, btnEdit, btnDelete, btnSave, btnCancelEdit);
       modalContainer.appendChild(modal);
       modal.append(msgDelete, btnMsgDelete, btnMsgCancel);
 
@@ -112,6 +118,7 @@ export const loadPosts = async () => {
           btnDelete.style.display = 'none';
           btnEdit.style.display = 'none';
           like.style.display = 'none';
+          count.style.display = 'none';
         });
       });
 
@@ -135,12 +142,25 @@ export const loadPosts = async () => {
         btnDelete.style.display = 'block';
         btnEdit.style.display = 'block';
         like.style.display = 'block';
+        count.style.display = 'block';
       });
 
-      const btnsLike = divBtns.querySelectorAll('.like');
+      const btnsLike = divBtns.querySelectorAll('#like');
       btnsLike.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          console.log(e.target);
+        btn.addEventListener('click', async (e) => {
+          if (!contentPost.like.includes(getUser().email)) {
+            try {
+              await likePost(contentPost.id);
+            } catch (error) {
+              console.log('hay un error', error);
+            }
+          } else {
+            try {
+              await dislikePost(contentPost.id);
+            } catch (error) {
+              console.log('hubo un error', error);
+            }
+          }
         });
       });
 

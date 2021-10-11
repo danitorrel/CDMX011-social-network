@@ -55,4 +55,15 @@ export const posts = (username, date, time, post) => db.collection('posts').add(
   date,
   time,
   post,
+  like: [],
 });
+
+export const likePost = (id) => {
+  const user = getUser().email;
+  return db.collection('posts').doc(id).update({ like: firebase.firestore.FieldValue.arrayUnion(user) });
+};
+
+export const dislikePost = (id) => {
+  const user = getUser().email;
+  return db.collection('posts').doc(id).update({ like: firebase.firestore.FieldValue.arrayRemove(user) });
+};
