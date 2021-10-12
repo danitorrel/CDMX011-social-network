@@ -2,8 +2,8 @@ import { onNavigate } from '../main.js';
 import { authGoogle } from '../lib/lib/firebase.js';
 
 export const Home = () => {
-  document.body.style.backgroundColor = '#F2B705';
   const Homediv = document.createElement('div');
+  Homediv.style.background = 'linear-gradient(#F2B705, #ffffff, #ffffff)';
   Homediv.classList.add('homediv');
 
   const airplane = document.createElement('img');
@@ -53,6 +53,5 @@ export const Home = () => {
   Homediv.append(airplane, logo, labelWelcome, passport);
   Homediv.appendChild(divButtons);
   divButtons.append(buttonRegister, buttonLogin, labelOr, buttonGoogle, imgGoogle);
-
   return Homediv;
 };

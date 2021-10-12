@@ -42,6 +42,7 @@ export const loadPosts = async () => {
 
       const count = document.createElement('label');
       count.textContent = contentPost.like.length;
+      count.classList.add('counter');
 
       const btnDelete = document.createElement('button');
       btnDelete.classList.add('btnDelete');
@@ -165,8 +166,8 @@ export const loadPosts = async () => {
       });
 
       if (contentPost.username !== getUser().displayName) {
-        btnDelete.style.display = 'none';
-        btnEdit.style.display = 'none';
+        divBtns.removeChild(btnDelete);
+        divBtns.removeChild(btnEdit);
       }
     });
   });

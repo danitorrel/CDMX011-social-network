@@ -2,7 +2,7 @@ body {
 	overflow-x: hidden;
 }
 
-.homediv, .divButtons, .divFormRegister, .divLogin {
+.homediv, .divFormRegister, .divLogin {
   position: relative;
   display: flex;
   flex-flow: column wrap;
@@ -42,7 +42,11 @@ body {
 }
 
 .divButtons {
-	background-color: white;
+	position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
@@ -102,13 +106,13 @@ button {
 .imgGoogleLog {
 	position: absolute;
 	left: 22%;
-	top: 230px;
+	top: 233px;
 }
 
 .imgGoogleReg {
 	position: absolute;
 	left: 21%;
-	top: 331px;
+	top: 335px;
 }
 
 #labelO {
@@ -254,10 +258,11 @@ input::placeholder {
 #post {
 	width: 257px;
 	height: 90px;
-	border: none;
+	border: 1px solid #F25040;
+	padding: 10px;
 	margin-top: 25px;
+	margin-left: 45px;
 	font-family: 'Merriweather Sans', sans-serif;
-	margin-left: 52px;
 	resize: none;
 }
 
@@ -328,6 +333,18 @@ input::placeholder {
 	display: flex;
 	flex-direction: row;
 	margin-left: 20px;
+}
+
+#like {
+	margin: 18px 7px 18px 18px;
+	width: 35px;
+	height: 35px;
+}
+
+.counter {
+	font-family: 'Merriweather Sans', sans-serif;
+	font-size: 12px;
+	margin-top: 18px;
 }
 
 .btnDelete {

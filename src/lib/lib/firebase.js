@@ -42,7 +42,7 @@ export const getUser = () => firebase.auth().currentUser;
 
 export const getPosts = () => db.collection('posts').get();
 
-export const onGetPosts = (callback) => db.collection('posts').onSnapshot(callback);
+export const onGetPosts = (callback) => db.collection('posts').orderBy('exactDate', 'desc').onSnapshot(callback);
 
 export const deletePost = (id) => db.collection('posts').doc(id).delete();
 
@@ -50,8 +50,9 @@ export const getPost = (id) => db.collection('post').doc(id).get();
 
 export const updatePost = (id, updatedPost) => db.collection('posts').doc(id).update(updatedPost);
 
-export const posts = (username, date, time, post) => db.collection('posts').add({
+export const posts = (username, exactDate, date, time, post) => db.collection('posts').add({
   username,
+  exactDate,
   date,
   time,
   post,
